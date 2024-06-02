@@ -35,7 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ totalResult,onSearch }) => {
         <button>Creative</button>
         <button>Editorial</button>
     </div>
-    <span class="query-count">{query} stock Photos and Images ({totalResult})</span>
+    <span className="query-count">{query} stock Photos and Images ({totalResult})</span>
     </div>
 
   );
