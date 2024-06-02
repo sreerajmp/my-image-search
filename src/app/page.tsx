@@ -9,7 +9,7 @@ const fetchImages = async (query: string, page: number) => {
 };
 
 export default async function Home({ searchParams }: { searchParams: { query?: string; page?: string } }) {
-  const query = searchParams.query;
+  const query = searchParams.query || "search";
   const page = searchParams.page ? parseInt(searchParams.page, 8) : 1;
 
   const initialData = await fetchImages(query, page);
