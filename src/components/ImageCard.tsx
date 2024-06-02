@@ -5,9 +5,11 @@ import { faShoppingCart, faDownload,faImage,faCirclePlus } from '@fortawesome/fr
 
 interface ImageCardProps {
   image: {
-    id: string;
-    url: string;
-    title: string;
+    id: number;
+    alt: string;
+    src:{
+      original:string
+    };
     photographer: string;
   };
 }

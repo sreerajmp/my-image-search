@@ -12,7 +12,7 @@ const ImageGrid: React.FC<ImageGridProps> = ({ images }) => {
     <div>
    
     <div className="image-grid">
-      {images.map((image) => (
+      {images.map((image:any) => (
         <ImageCard key={image.id} image={image} />
       ))}
     </div>
