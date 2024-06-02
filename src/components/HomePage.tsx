@@ -20,11 +20,12 @@ const HomePage: React.FC<HomePageProps> = ({ initialData, initialQuery, initialP
   const router = useRouter();
   useEffect(() => {
     router.push(`/?query=${query}&page=1`);
-
   },[query])
+
   useEffect(() => {    
     router.push(`/?query=${query}&page=${page}`);
   },[page])
+
   const handleSearch = async (newQuery: string) => {
     setQuery(newQuery)
   };
