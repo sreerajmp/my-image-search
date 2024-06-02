@@ -1,4 +1,3 @@
-// src/components/ImageCard.tsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faDownload, faImage, faCirclePlus } from '@fortawesome/free-solid-svg-icons';

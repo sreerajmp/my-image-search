@@ -1,7 +1,6 @@
-// src/components/HomePage.tsx
 'use client';
-import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { ApiResponse, Image } from '../types';
 import SearchBar from './SearchBar';
 import ImageGrid from './ImageGrid';
@@ -13,29 +12,32 @@ interface HomePageProps {
   initialPage: number;
 }
 
-const fetchImages = async (query: string, page: number) => {
-  const response = await axios.get<ApiResponse>(`https://simple-pexels-proxy.onrender.com/search?query=${query}&per_page=8&page=${page}`);
-  return response.data;
-};
-
 const HomePage: React.FC<HomePageProps> = ({ initialData, initialQuery, initialPage }) => {
   const [images, setImages] = useState<Image[]>(initialData.photos);
   const [query, setQuery] = useState(initialQuery);
   const [page, setPage] = useState(initialPage);
-  const [totalPages, setTotalPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(initialData.total_results);
+  const router = useRouter();
+  useEffect(() => {
+    router.push(`/?query=${query}&page=1`);
 
+  },[query])
+  useEffect(() => {    
+    router.push(`/?query=${query}&page=${page}`);
+  },[page])
   const handleSearch = async (newQuery: string) => {
-    const data = await fetchImages(newQuery, 1);
-    setImages(data.photos);
-    setTotalPages(data.total_results);
-    setQuery(newQuery);
-    setPage(1);
+    setQuery(newQuery)
   };
 
-  const handlePageChange = async (newPage: number) => {
-    const data = await fetchImages(query, newPage);
-    setImages(data.photos);
-    setPage(newPage);
+  useEffect(() => {
+    setImages(initialData.photos)
+    setQuery(initialQuery)
+    setPage(initialPage)
+    setTotalPages(initialData.total_results)
+  },[initialData,initialPage,initialQuery])
+
+  const handlePageChange = async (newPage: number) => {    
+    setPage(newPage)
   };
 
   return (

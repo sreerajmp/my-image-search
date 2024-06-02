@@ -1,8 +1,7 @@
-// src/types/index.ts
 export interface Image {
     id: number;
     src: {
-      medium: string;
+      original: string;
     };
     alt: string;
     photographer: string;

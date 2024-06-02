@@ -1,4 +1,4 @@
-// src/app/page.tsx
+'use server'
 import axios from 'axios';
 import { ApiResponse } from '../types';
 import HomePage from '../components/HomePage';

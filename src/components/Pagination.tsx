@@ -1,7 +1,5 @@
 'use client';
-
 import React, { useState } from 'react';
-
 interface PaginationProps {
   page: number;
   query: string;
@@ -16,25 +14,26 @@ const Pagination: React.FC<PaginationProps> = ({ page, query, totalPages, onPage
     setInputPage(e.target.value);
   };
 
-  const handleGoToPage = () => {
+  const handleGoToPage = (e: any) => {
     const newPage = Number(inputPage);
     if (!isNaN(newPage) && newPage > 0 && newPage <= totalPages) {
       onPageChange(newPage);
+      e.preventDefault();
     }
   };
 
   return (
     <div className="pagination">
       <span>Search result for {query} Photos and Images ({totalPages})</span>
-      
+
       <div className="go-to-page">
-      <span>{page} of {Math.ceil(totalPages / 18)}</span>
+        <span>{page} of {Math.ceil(totalPages / 8)}</span>
 
         <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>
-        {'<'}
+          {'<'}
         </button>
         <button onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>
-        {'>'}
+          {'>'}
         </button>
         <input
           type="number"
