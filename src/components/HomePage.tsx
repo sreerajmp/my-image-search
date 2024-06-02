@@ -43,8 +43,13 @@ const HomePage: React.FC<HomePageProps> = ({ initialData, initialQuery, initialP
   return (
     <div>
       <SearchBar onSearch={handleSearch} totalResult={totalPages} />
+      {query==""? <h1 style={{textAlign:"center"}}>Please enter a search query</h1> : 
+      <div>
       <ImageGrid images={images} />
       <Pagination page={page} query={query} totalPages={totalPages} onPageChange={handlePageChange} />
+      </div>
+
+      }
     </div>
   );
 };

@@ -8,17 +8,16 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ page, query, totalPages, onPageChange }) => {
-  const [inputPage, setInputPage] = useState<number | string>('');
+  const [inputPage, setInputPage] = useState<number | string>(1);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {    
     setInputPage(e.target.value);
   };
 
   const handleGoToPage = (e: any) => {
-    const newPage = Number(inputPage);
+      const newPage = Number(inputPage);
     if (!isNaN(newPage) && newPage > 0 && newPage <= totalPages) {
       onPageChange(newPage);
-      e.preventDefault();
     }
   };
 
@@ -32,7 +31,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, query, totalPages, onPage
         <button onClick={() => onPageChange(page - 1)} disabled={page === 1}>
           {'<'}
         </button>
-        <button onClick={() => onPageChange(page + 1)} disabled={page === totalPages}>
+        <button onClick={() => onPageChange(page + 1)} disabled={page == Math.ceil(totalPages / 8)}>
           {'>'}
         </button>
         <input
